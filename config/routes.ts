@@ -36,7 +36,23 @@
 		component: './RandomUser',
 		icon: 'ArrowsAltOutlined',
 	},
-
+	{
+    name: 'Bài tập thực hành 1',
+    icon: 'code',
+    path: '/bai-tap',
+    routes: [
+      {
+        name: 'Bài 1: Game Đoán Số',
+        path: '/bai-tap/bai-1',
+        component: './BaiTap/Bai1',
+      },
+      {
+        name: 'Bài 2: TodoList',
+        path: '/bai-tap/bai-2',
+        component: './BaiTap/Bai2',
+      },
+    ],
+  },
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
