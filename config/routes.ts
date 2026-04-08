@@ -51,6 +51,11 @@
         path: '/bai-tap/bai-2',
         component: './BaiTap/Bai2',
       },
+      {
+        name: 'Bài 3: Quản lý công việc nhóm',
+        path: '/bai-tap/bai-3',
+        component: './TienIch/QuanLyCongViec',
+      },
     ],
   },
 	// DANH MUC HE THONG
