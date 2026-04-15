@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Button, Card, Col, Divider, Input, message, Row, Typography } from 'antd';
+import { Button, Card, Col, Divider, Input, message, Row, Tag, Typography } from 'antd';
 import { TaskItem } from '@/models/quanlycongviec/task';
 import { getTasks, addTask, updateTask, deleteTask, getAssignees } from '@/services/quanlycongviec/taskService';
 import { getCurrentUser, setCurrentUser, clearCurrentUser } from '@/services/quanlycongviec/userService';
@@ -167,11 +167,22 @@ const Bai3_QuanLyCongViec = () => {
           <Card title="Công việc của bạn" style={{ marginTop: 16 }}>
             {currentUserTasks.length ? (
               <ul style={{ paddingLeft: 20 }}>
-                {currentUserTasks.map((task) => (
-                  <li key={task.id}>
-                    {task.title} - {task.priority} - {task.status} - deadline {task.deadline}
-                  </li>
-                ))}
+                {currentUserTasks.map((task) => {
+                  const statusColor = 
+                    task.status === 'Chưa làm' ? 'red' :
+                    task.status === 'Đang làm' ? 'orange' :
+                    'green';
+                  return (
+                    <li key={task.id} style={{ marginBottom: 8 }}>
+                      <strong>{task.title}</strong>
+                      <div style={{ marginTop: 4 }}>
+                        <Tag>{task.priority} ưu tiên</Tag>
+                        <Tag color={statusColor}>{task.status}</Tag>
+                        <Tag>Deadline: {task.deadline}</Tag>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             ) : (
               <Text>Không có công việc được giao cho bạn trong bộ lọc hiện tại.</Text>

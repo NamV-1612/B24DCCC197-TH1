@@ -1,13 +1,26 @@
 import type { FC } from 'react';
-import { Button, Popconfirm, Space, Table } from 'antd';
+import { Button, Popconfirm, Space, Table, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { TaskItem } from '@/models/quanlycongviec/task';
+import { TaskItem, TaskStatus } from '@/models/quanlycongviec/task';
 
 interface TaskTableProps {
   tasks: TaskItem[];
   onEdit: (task: TaskItem) => void;
   onDelete: (task: TaskItem) => void;
 }
+
+const getStatusColor = (status: TaskStatus): string => {
+  switch (status) {
+    case 'Chưa làm':
+      return 'red';
+    case 'Đang làm':
+      return 'orange';
+    case 'Đã xong':
+      return 'green';
+    default:
+      return 'gray';
+  }
+};
 
 const TaskTable: FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
   const columns = [
@@ -37,6 +50,7 @@ const TaskTable: FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
       title: 'Trạng thái',
       dataIndex: 'status',
       key: 'status',
+      render: (status: TaskStatus) => <Tag color={getStatusColor(status)}>{status}</Tag>,
     },
     {
       title: 'Hành động',
