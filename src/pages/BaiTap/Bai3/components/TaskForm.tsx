@@ -4,12 +4,10 @@ import { Button, DatePicker, Form, Input, Select, Space } from 'antd';
 import * as moment from 'moment';
 import { TaskItem, TaskPriority, TaskStatus } from '@/models/quanlycongviec/task';
 
-type TaskData = Omit<TaskItem, 'id'>;
-
 interface TaskFormProps {
   initialTask?: TaskItem;
   assignees: string[];
-  onSave: (task: TaskData) => void;
+  onSave: (task: QuanLyCongViec.TaskData) => void;
   onCancel: () => void;
 }
 
