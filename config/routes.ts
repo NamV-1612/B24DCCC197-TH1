@@ -37,24 +37,14 @@
 		icon: 'ArrowsAltOutlined',
 	},
 	{
-    name: 'Bài tập thực hành 1',
+    name: 'Bài tập TH7',
     icon: 'code',
     path: '/bai-tap',
     routes: [
       {
-        name: 'Bài 1: Game Đoán Số',
-        path: '/bai-tap/bai-1',
-        component: './BaiTap/Bai1',
-      },
-      {
-        name: 'Bài 2: TodoList',
-        path: '/bai-tap/bai-2',
-        component: './BaiTap/Bai2',
-      },
-      {
-        name: 'Bài 3: Quản lý công việc nhóm',
+        name: 'Quản lý công việc nhóm',
         path: '/bai-tap/bai-3',
-        component: './TienIch/QuanLyCongViec',
+        component: './BaiTap/Bai3',
       },
     ],
   },

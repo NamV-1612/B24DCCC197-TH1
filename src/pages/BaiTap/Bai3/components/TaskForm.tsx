@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import type { FC } from 'react';
 import { Button, DatePicker, Form, Input, Select, Space } from 'antd';
 import * as moment from 'moment';
-import { TaskItem, TaskPriority, TaskStatus } from '@/services/TaskService';
+import { TaskItem, TaskPriority, TaskStatus } from '@/models/quanlycongviec/task';
 
 interface TaskFormProps {
   initialTask?: TaskItem;
   assignees: string[];
-  onSave: (task: TaskItem) => void;
+  onSave: (task: Omit<TaskItem, 'id'>): void;
   onCancel: () => void;
 }
 
@@ -20,8 +20,11 @@ const TaskForm: FC<TaskFormProps> = ({ initialTask, assignees, onSave, onCancel 
   useEffect(() => {
     if (initialTask) {
       form.setFieldsValue({
-        ...initialTask,
+        title: initialTask.title,
+        assignee: initialTask.assignee,
+        priority: initialTask.priority,
         deadline: moment(initialTask.deadline),
+        status: initialTask.status,
       });
     } else {
       form.resetFields();
@@ -30,7 +33,6 @@ const TaskForm: FC<TaskFormProps> = ({ initialTask, assignees, onSave, onCancel 
 
   const handleFinish = (values: any) => {
     onSave({
-      id: initialTask ? initialTask.id : Date.now(),
       title: values.title.trim(),
       assignee: values.assignee,
       priority: values.priority,
@@ -92,9 +94,7 @@ const TaskForm: FC<TaskFormProps> = ({ initialTask, assignees, onSave, onCancel 
           <Button type="primary" htmlType="submit">
             {initialTask ? 'Cập nhật' : 'Thêm công việc'}
           </Button>
-          {initialTask && (
-            <Button onClick={onCancel}>Hủy</Button>
-          )}
+          {initialTask && <Button onClick={onCancel}>Hủy</Button>}
         </Space>
       </Form.Item>
     </Form>

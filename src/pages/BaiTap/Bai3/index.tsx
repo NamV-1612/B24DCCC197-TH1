@@ -1,14 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Button, Card, Col, Divider, Input, message, Row, Typography } from 'antd';
-import {
-  clearCurrentUser,
-  getAssignees,
-  getCurrentUser,
-  getTasks,
-  saveTasks,
-  setCurrentUser,
-  TaskItem,
-} from '@/services/TaskService';
+import { TaskItem } from '@/models/quanlycongviec/task';
+import { getTasks, addTask, updateTask, deleteTask, getAssignees } from '@/services/quanlycongviec/taskService';
+import { getCurrentUser, setCurrentUser, clearCurrentUser } from '@/services/quanlycongviec/userService';
 import TaskFilter from './components/TaskFilter';
 import TaskForm from './components/TaskForm';
 import TaskTable from './components/TaskTable';
@@ -17,7 +11,7 @@ import TaskStats from './components/TaskStats';
 
 const { Title, Text } = Typography;
 
-const QuanLyCongViec = () => {
+const Bai3_QuanLyCongViec = () => {
   const [tasks, setTasks] = useState<TaskItem[]>([]);
   const [currentUser, setCurrentUserState] = useState<string>('');
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -35,12 +29,7 @@ const QuanLyCongViec = () => {
     }
   }, []);
 
-  const assignees = useMemo(() => getAssignees(tasks), [tasks]);
-
-  const saveAndRefresh = (newTasks: TaskItem[]) => {
-    setTasks(newTasks);
-    saveTasks(newTasks);
-  };
+  const assignees = useMemo(() => getAssignees(), []);
 
   const handleLogin = () => {
     const username = loginName.trim();
@@ -59,16 +48,18 @@ const QuanLyCongViec = () => {
     message.success('Đã đăng xuất');
   };
 
-  const handleSaveTask = (task: TaskItem) => {
-    let newTasks: TaskItem[];
+  const handleSaveTask = (taskData: Omit<TaskItem, 'id'>) => {
     if (selectedTask) {
-      newTasks = tasks.map((item) => (item.id === task.id ? task : item));
-      message.success('Cập nhật công việc thành công');
+      const updated = updateTask(selectedTask.id, taskData);
+      if (updated) {
+        setTasks(getTasks());
+        message.success('Cập nhật công việc thành công');
+      }
     } else {
-      newTasks = [task, ...tasks];
+      addTask(taskData);
+      setTasks(getTasks());
       message.success('Đã thêm công việc mới');
     }
-    saveAndRefresh(newTasks);
     setSelectedTask(undefined);
   };
 
@@ -77,11 +68,13 @@ const QuanLyCongViec = () => {
   };
 
   const handleDeleteTask = (task: TaskItem) => {
-    const newTasks = tasks.filter((item) => item.id !== task.id);
-    saveAndRefresh(newTasks);
-    message.success('Xóa công việc thành công');
-    if (selectedTask?.id === task.id) {
-      setSelectedTask(undefined);
+    const success = deleteTask(task.id);
+    if (success) {
+      setTasks(getTasks());
+      message.success('Xóa công việc thành công');
+      if (selectedTask?.id === task.id) {
+        setSelectedTask(undefined);
+      }
     }
   };
 
@@ -105,7 +98,7 @@ const QuanLyCongViec = () => {
       <Card style={{ marginBottom: 24 }}>
         <Row gutter={16} align="middle">
           <Col flex="1">
-            <Title level={4}>Quản lý công việc nhóm</Title>
+            <Title level={4}>Bài 3: Quản lý công việc nhóm</Title>
             <Text type="secondary">Ứng dụng quản lý task nhóm với login, lọc, lịch và thống kê.</Text>
           </Col>
           <Col>
@@ -123,6 +116,7 @@ const QuanLyCongViec = () => {
                   value={loginName}
                   onChange={(e) => setLoginName(e.target.value)}
                   style={{ width: 200 }}
+                  onPressEnter={handleLogin}
                 />
                 <Button type="primary" onClick={handleLogin}>
                   Đăng nhập
@@ -191,4 +185,5 @@ const QuanLyCongViec = () => {
   );
 };
 
-export default QuanLyCongViec;
+export default Bai3_QuanLyCongViec;
+

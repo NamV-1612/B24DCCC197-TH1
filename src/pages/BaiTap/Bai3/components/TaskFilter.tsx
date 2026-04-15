@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Input, Select, Space, Button } from 'antd';
-import { TaskStatus } from '@/services/TaskService';
+import { TaskStatus } from '@/models/quanlycongviec/task';
 
 const { Search } = Input;
 

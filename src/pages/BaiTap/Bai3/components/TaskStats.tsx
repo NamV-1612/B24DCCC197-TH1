@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Card, Col, Row, Statistic } from 'antd';
-import { TaskItem } from '@/services/TaskService';
+import { TaskItem } from '@/models/quanlycongviec/task';
 
 interface TaskStatsProps {
   tasks: TaskItem[];
