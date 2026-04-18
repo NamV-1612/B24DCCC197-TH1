@@ -17,7 +17,29 @@ const TaskCalendar: FC<TaskCalendarProps> = ({ tasks }) => {
     start: new Date(task.deadline),
     end: new Date(task.deadline),
     allDay: true,
+    status: task.status,
   }));
+
+  const eventPropGetter = (event: { status: string }) => {
+    let backgroundColor = '#52c41a';
+    let borderColor = '#389e0d';
+
+    if (event.status === 'Chưa làm') {
+      backgroundColor = '#ff4d4f';
+      borderColor = '#d32029';
+    } else if (event.status === 'Đang làm') {
+      backgroundColor = '#faad14';
+      borderColor = '#d48806';
+    }
+
+    return {
+      style: {
+        backgroundColor,
+        borderColor,
+        color: '#ffffff',
+      },
+    };
+  };
 
   return (
     <div style={{ height: '500px', marginTop: 24 }}>
@@ -26,6 +48,7 @@ const TaskCalendar: FC<TaskCalendarProps> = ({ tasks }) => {
         events={events}
         startAccessor="start"
         endAccessor="end"
+        eventPropGetter={eventPropGetter}
         style={{ height: '100%' }}
       />
     </div>

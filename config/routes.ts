@@ -31,23 +31,17 @@
 		hideInMenu: true,
 	},
 	{
+		path: '/quan-ly-cong-viec',
+		name: 'Quản lý công việc nhóm',
+		component: './TienIch/QuanLyCongViec',
+		icon: 'TeamOutlined',
+	},
+	{
 		path: '/random-user',
 		name: 'RandomUser',
 		component: './RandomUser',
 		icon: 'ArrowsAltOutlined',
 	},
-	{
-    name: 'Bài tập TH7',
-    icon: 'code',
-    path: '/bai-tap',
-    routes: [
-      {
-        name: 'Quản lý công việc nhóm',
-        path: '/bai-tap/bai-3',
-        component: './BaiTap/Bai3',
-      },
-    ],
-  },
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
