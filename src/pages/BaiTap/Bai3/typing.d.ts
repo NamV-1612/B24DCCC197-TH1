@@ -1,4 +1,4 @@
-    import { TaskItem } from '@/models/quanlycongviec/task';
+    import { TaskItem } from '@/models/BaiTap7/quanlycongviec/task';
 
 declare global {
   namespace QuanLyCongViec {

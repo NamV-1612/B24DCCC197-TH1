@@ -1,5 +1,5 @@
 import { getTasks, TaskItem } from '@/services/quanlycongviec/taskService';
-import { TaskFilterParams, TaskStatistics } from '@/models/quanlycongviec/task';
+import { TaskFilterParams, TaskStatistics } from '@/models/BaiTap7/quanlycongviec/task';
 
 export const filterTasks = (tasks: TaskItem[], params: TaskFilterParams): TaskItem[] => {
   let result = tasks;

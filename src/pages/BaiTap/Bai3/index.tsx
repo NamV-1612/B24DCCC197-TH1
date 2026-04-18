@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Button, Card, Col, Divider, Input, message, Row, Tag, Typography } from 'antd';
-import { TaskItem } from '@/models/quanlycongviec/task';
+import { TaskItem } from '@/models/BaiTap7/quanlycongviec/task';
 import { getTasks, addTask, updateTask, deleteTask, getAssignees } from '@/services/quanlycongviec/taskService';
 import { getCurrentUser, setCurrentUser, clearCurrentUser } from '@/services/quanlycongviec/userService';
 import TaskFilter from './components/TaskFilter';

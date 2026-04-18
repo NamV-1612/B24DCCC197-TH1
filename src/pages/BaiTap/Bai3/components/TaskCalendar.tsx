@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import * as moment from 'moment';
-import { TaskItem, TaskStatus } from '@/models/quanlycongviec/task';
+import { TaskItem, TaskStatus } from '@/models/BaiTap7/quanlycongviec/task';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment as any);

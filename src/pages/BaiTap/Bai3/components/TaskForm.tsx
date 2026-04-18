@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import type { FC } from 'react';
 import { Button, DatePicker, Form, Input, Select, Space } from 'antd';
 import * as moment from 'moment';
-import { TaskItem, TaskPriority, TaskStatus } from '@/models/quanlycongviec/task';
+import { TaskItem, TaskPriority, TaskStatus } from '@/models/BaiTap7/quanlycongviec/task';
 
 interface TaskFormProps {
   initialTask?: TaskItem;

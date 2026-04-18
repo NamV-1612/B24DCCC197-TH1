@@ -1,4 +1,4 @@
-import { UserProfile } from '@/models/quanlycongviec/user';
+import { UserProfile } from '@/models/BaiTap7/quanlycongviec/user';
 
 const USER_KEY = 'TH7_TASK_MANAGER_USER';
 

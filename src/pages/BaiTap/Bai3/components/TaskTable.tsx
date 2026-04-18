@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Button, Popconfirm, Space, Table, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { TaskItem, TaskStatus } from '@/models/quanlycongviec/task';
+import { TaskItem, TaskStatus } from '@/models/BaiTap7/quanlycongviec/task';
 
 interface TaskTableProps {
   tasks: TaskItem[];

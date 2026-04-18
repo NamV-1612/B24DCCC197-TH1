@@ -1,4 +1,4 @@
-import { TaskItem } from '@/models/quanlycongviec/task';
+import { TaskItem } from '@/models/BaiTap7/quanlycongviec/task';
 
 const TASKS_KEY = 'TH7_TASK_MANAGER_TASKS';
 
