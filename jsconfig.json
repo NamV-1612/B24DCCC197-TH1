@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "experimentalDecorators": true
   }
 }
